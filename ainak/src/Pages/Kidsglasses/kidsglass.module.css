@@ -1,0 +1,50 @@
+.product{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,max-content));
+    gap:33px;  
+    padding: 2%; 
+    width: 95%;
+}
+.productfont{
+    font-family:sans-serif;
+    font-size: 23px;
+    font-weight: 600;
+    color: black;
+}
+.descfont{
+    font-family:cursive;
+    font-size: 15px;
+    font-weight: 600;
+    color: purple;
+    border: 0rem solid cadetblue;
+    border-top-left-radius:17px ;
+    border-bottom-right-radius: 17px;
+}
+
+.button{
+    border-radius: 14px;
+    padding: 9px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: cadetblue;
+    color: black;
+    font-weight: 400;
+    width: 60%;
+}
+
+.button:hover{
+    border-radius: 14px;
+    padding: 9px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: bisque;
+    color: cadetblue;
+    font-weight: 400;
+    width: 70%;
+}
+
+.rupees{
+    font-family:cursive;
+    font-size: 23px;
+    font-weight: 500;
+    color: blueviolet;
+}
+

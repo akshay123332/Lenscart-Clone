@@ -1,0 +1,30 @@
+.specs-grid{
+    max-width: 100%;
+    
+    justify-content: center;
+    height: auto;
+    background-color: rgb(16, 10, 59);
+    display: grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,max-content));
+    
+}
+.frames{
+    display: grid;
+    max-width: 100%;
+    height: auto;
+    grid-template-columns:repeat(auto-fit,minmax(300px,max-content));
+
+}
+.celebs{
+    display: grid;
+    max-width: 100%;
+    background-color: rgb(255, 243, 245);
+    height: auto;
+    grid-template-columns:repeat(auto-fit,minmax(300px,max-content));
+}
+/* @media (max-width: 600px) {
+    .specs-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  } */
+ 

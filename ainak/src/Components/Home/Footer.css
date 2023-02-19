@@ -1,0 +1,57 @@
+.Footer-cont{
+    max-width: 100%;
+    height: auto;
+    background-color: rgb(31, 31, 95);
+    padding-bottom: 20px;
+}
+.list{
+    width: 95%;
+    
+    margin: auto;
+    height: 15rem;
+    color: white;
+}
+.list-items{
+    
+    width: 75%;
+    margin-top: 50px;
+}
+.list-items>ul>Text,li:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.options{
+    
+    margin-top: 50px;
+}
+.images{
+margin-left: 35px;
+}
+.border{
+    width: 95%;
+    
+    border: 1px solid white;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+.social{
+   
+    width: 95%;
+    margin: auto;
+    height: 50px;
+    color: white;
+    
+}
+.TnC{
+   
+    width: 30%;
+    height: 30px;
+    margin-top: 10px;
+    justify-content: space-around;
+}
+.handles{
+    
+    margin-top: 10px;
+    width: 20%;
+    justify-content: space-around;
+}

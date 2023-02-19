@@ -1,0 +1,15 @@
+.tc{
+    max-width: 90%;
+    margin: auto;
+    text-align: left;
+    height: auto;
+    margin-top: 2rem;
+}
+.gold{
+    margin-left: -20px;
+}
+.tc2{
+    text-align: left;
+    max-width: 100%;
+    height: 12rem;
+}

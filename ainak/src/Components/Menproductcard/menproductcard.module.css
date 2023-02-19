@@ -1,0 +1,18 @@
+.container{
+    border:0.5px dotted black;
+    height: fit-content;
+    width: 300px;
+    border-radius: 10px;
+    text-align: left;
+    padding: 5px;
+    padding-bottom: 15px;
+}
+.container h2{
+    font-weight: 400;
+    font-weight: bolder;
+}
+
+.buycontainer{
+    background-color:goldenrod;
+    color: gold;
+}

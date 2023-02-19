@@ -1,0 +1,29 @@
+export const specs_grid = [
+    {
+        img:"https://static1.lenskart.com/media/desktop/img/Jan23/images/Frame-632504_04.jpg"
+    },
+    {
+        img:"https://static1.lenskart.com/media/desktop/img/Jan23/images/Frame-632504_05.jpg"
+    },
+    {
+        img:"https://static1.lenskart.com/media/desktop/img/Jan23/images/Frame-632504_06.jpg"
+    },
+    {
+        img:"https://static1.lenskart.com/media/desktop/img/Jan23/images/Frame-632504_07.jpg"
+    },
+    {
+        img:"https://static1.lenskart.com/media/desktop/img/Jan23/images/Frame-632504_08.jpg"
+    },
+    {
+        img:"https://static1.lenskart.com/media/desktop/img/Jan23/images/Frame-632504_09.jpg"
+    },
+    {
+        img:"https://static1.lenskart.com/media/desktop/img/Jan23/images/Frame-632504_10.jpg"
+    },
+    {
+        img:"https://static1.lenskart.com/media/desktop/img/Jan23/images/Frame-632504_11.jpg"
+    },
+    {
+        img:"https://static1.lenskart.com/media/desktop/img/Jan23/images/Frame-632504_12.jpg"
+    },
+]

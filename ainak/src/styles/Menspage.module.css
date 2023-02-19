@@ -1,0 +1,17 @@
+.container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+.sidebarcontainer{
+    border: 1px solid red;
+    width:20%;
+}
+
+.listcontainer{
+    border: 1px solid green;
+    width:75%;
+}
