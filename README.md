@@ -5,7 +5,7 @@ This is the photos of the Ainak website. Ainak is an online Ecommerce Website wh
 
 **To see the live site click the below link.**
 
-https://prismatic-taiyaki-f69ca6.netlify.app/
+https://funny-pegasus-c3b55b.netlify.app/
 
 ## Built with
 <ul>
