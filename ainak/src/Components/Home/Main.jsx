@@ -4,8 +4,10 @@ import "./Main.css"
 import { Box, Flex } from '@chakra-ui/react'
 import Tc from './Tc'
 const Main = () => {
+    
   return (
     <div>
+        
       <div className='gif1'>
         <img src="https://static1.lenskart.com/media/desktop/img/Jan23/images/Frame-632504_01.jpg" alt="" />
          <img src="https://static1.lenskart.com/media/desktop/img/Jan23/images/Frame-632504_02.jpg" alt="" />       
