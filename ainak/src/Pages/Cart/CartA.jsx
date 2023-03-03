@@ -53,7 +53,7 @@ const CartA = () => {
     <Box maxWidth={"80%"} m="auto" >
     <Box display="flex" justifyContent={"space-between"} >
       <Box maxW="60%">
-      <Text fontSize='2xl' mb={"5%"}>Cart Items {data.length}</Text>
+      <Text fontSize='2xl' mb={"5%"} textAlign='start'>Cart Items {data.length}</Text>
         {
           data.map((el)=>{
            
