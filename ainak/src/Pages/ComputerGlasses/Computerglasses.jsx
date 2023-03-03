@@ -6,9 +6,11 @@ import Sidebar from '../../Components/Sidebar/Sidebar'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useSearchParams } from 'react-router-dom'
 import { getData } from '../../redux/menspage/action'
- import Navbar from '../../Components/Home/Navbar'
+//  import Navbar from '../../Components/Home/Navbar'
 import Footer from '../../Components/Home/Footer'
 import Loader from '../../Components/Loader'
+import Navabr from '../../changed navbar/Navbar/Navabr'
+import LargeWithLogoLeft from '../../changed navbar/Footer/Footer'
 
 const Computerglasses = () => {
 const[produ,setProdu]=useState([])
@@ -37,9 +39,9 @@ useEffect(()=>{
 
   return (
     <div>
-      <Navbar/>
-        <div style={{display:"flex",padding:"45px" , width:"100%",margin:"auto"}}>
-          <div style={{width:"20%", border:"0.5rem double cadetblue",height:"500px",marginTop:"30px", borderRadius:"9px" ,padding:"15px", position:"sticky" , top:"30px",boxSizing:"rivert"}}><Sidebar/></div>
+   <Navabr/>
+        <div className={styles.main} >
+          <div className={styles.sidebar}><Sidebar/></div>
           <div  className={`${styles.product}`}>
         
           {data?.map((el,index)=>{
@@ -51,7 +53,7 @@ useEffect(()=>{
           
             
         </div>
-    <Footer/>
+    <LargeWithLogoLeft/>
     </div>
   )
 }

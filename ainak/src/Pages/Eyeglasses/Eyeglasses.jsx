@@ -9,6 +9,8 @@ import { getData } from '../../redux/menspage/action'
 import Navbar from '../../Components/Home/Navbar'
 import Footer from '../../Components/Home/Footer'
 import Loader from '../../Components/Loader'
+import Navabr from '../../changed navbar/Navbar/Navabr'
+import LargeWithLogoLeft from '../../changed navbar/Footer/Footer'
 
 const Eyeglasses = () => {
 
@@ -36,10 +38,10 @@ useEffect(()=>{
 
   return (
     <div>
-      <Navbar/>
+      <Navabr/>
       
-          <div style={{display:"flex",padding:"45px" , width:"100%",margin:"auto"}}>
-          <div style={{width:"auto", border:"0.5rem double cadetblue",height:"500px",marginTop:"30px", borderRadius:"9px" ,padding:"25px", position:"sticky" , top:"30px",boxSizing:"rivert"}}><Sidebar/></div>
+          <div className={styles.main} >
+          <div className={styles.sidebar}><Sidebar/></div>
           
           <div columns={[1,2,3,3,3]} spacing={25} padding="2%" className={`${styles.product}`}>
           
@@ -53,7 +55,7 @@ useEffect(()=>{
           </div>
       
         </div>
-        <Footer/>
+       <LargeWithLogoLeft/>
     </div>
   )
 }

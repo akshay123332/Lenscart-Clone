@@ -48,3 +48,36 @@
     color: blueviolet;
 }
 
+
+.main{
+    display: flex;
+    padding: 15px;
+    /* flex-direction: column; */
+}
+.sidebar{
+    width:"20%";
+    border : 0.5rem double cadetblue;
+     height:500px;
+     margin-top:30px;
+      border-radius:9px ;
+      padding:15px;
+      /* position:sticky;
+       top:30px */
+}
+
+@media (min-width:300px) and (max-width:800px) {
+    .main{
+        display: flex;
+        flex-direction: column;
+    }
+    .sidebar{
+        width:"100%";
+        border : 0.5rem double cadetblue;
+         /* height:500px; */
+         margin-top:30px;
+          border-radius:9px ;
+          padding:15px;
+          /* position:sticky; */
+           /* top:30px */
+    }
+}
