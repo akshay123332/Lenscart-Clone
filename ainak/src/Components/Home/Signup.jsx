@@ -1,134 +1,239 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+// import logoWhite from "../../Assets/travelgo2.png";
+import { FaArrowLeft } from "react-icons/fa";
+import { BiShowAlt, BiHide } from "react-icons/bi";
+import { HiCheckCircle } from "react-icons/hi";
+import { GoPrimitiveDot } from "react-icons/go";
+import {Link as ReachLink} from 'react-router-dom'
+import ainak from "../../Assets/Ainka.jpeg"
+import "./Signup.css";
 import {
+  Checkbox,
   Button,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  FormControl,
-  FormLabel,
+  InputRightElement,
+  InputGroup,
+  VStack,
+  Text,
   Input,
-  Alert,
-  AlertIcon,
-  Portal,
- 
-  useDisclosure,
-  FormHelperText,
-  usePopover,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverArrow,
-  PopoverCloseButton,
-  
+  Flex,
+  Link,
+  Progress,
+  ListItem,
+  ListIcon,
+  Box,
+  List,
 } from "@chakra-ui/react";
-import { useNavigate} from "react-router-dom"
-import Login from "./Login";
+import { useDispatch } from "react-redux";
+import { hasAlphaNum, hasSymbol } from "./../../utils/utilis";
+import {
+  loginRequest,
+  loginSuccess,
+  loginError,
+} from "../../redux/authReducer/action";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import app from "./../../Firebase/Firebase";
+import { saveDataLocal } from "./../../LocalStorage/usernamePassword";
+import {useNavigate} from 'react-router-dom'
+
 const Signup = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [formData, setFormData] = useState({});
-  const [error, setError] = useState("");
-  const [userCredentials, setUserCredentials] = useState(JSON.parse(localStorage.getItem("user-credentials")));
-  const { isOpen: isPopoverOpen, onOpen: onPopoverOpen, onClose: onPopoverClose } = usePopover();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!formData.email || !formData.password) {
-      setError("Please fill in all the fields");
-      return(
-        <Alert status='success'>
-    <AlertIcon />
-    Data uploaded to the server. Fire on!
-  </Alert>
-      );
-    }
-    localStorage.setItem("user-credentials", JSON.stringify(formData));
-    setUserCredentials(formData);
-    setError("");
-    onClose();
-  };
+  const dispatch = useDispatch();
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
+  const [first, setfirst] = useState("");
+  const [show, setShow] = useState(false);
+  const [alphaNum, setalphaNum] = useState(0);
+  const [symbolNum, setsymbolNum] = useState(0);
+  const [strengthCount, setstrengthCount] = useState(0);
+  const [checked, setchecked] = useState(true);
   
+const navigate = useNavigate();
+  const handleClick = () => setShow(!show);
+  const handleSubmit = () => {
+    const auth = getAuth(app);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        let token = user.accessToken;
+        // ...
+        const payload = {
+          first,
+          token,
+        };
+        dispatch(loginRequest());
+        dispatch(loginSuccess(payload));
+        if(checked){
 
-  
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+          saveDataLocal("userDetails", { email, password });
+        }
+        navigate('/')
+      })
+      .catch((error) => {
+        console.log(error);
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        dispatch(loginError());
+        // ..
+      });
   };
-
-  const logout = () => {
-    localStorage.removeItem("user-credentials");
-    setUserCredentials(null);
-    onPopoverClose();
+  const passwordChangeFn = (e) => {
+    setpassword(e.target.value);
   };
-
   useEffect(() => {
-    setUserCredentials(JSON.parse(localStorage.getItem("user-credentials")));
-  }, []);
-
+    let passTemp = 0;
+    if (password.length > 7) {
+      passTemp = 1;
+    }
+    hasAlphaNum.test(password) == true ? setalphaNum(1) : setalphaNum(0);
+    hasSymbol.test(password) == true ? setsymbolNum(1) : setsymbolNum(0);
+    let tempCount = ((alphaNum * 30) + (symbolNum * 30) + (passTemp * 40));
+    setstrengthCount(tempCount);
+  }, [password.length,strengthCount]);
   return (
-    <>
-    {!userCredentials ? (
-       <button style={{marginLeft:"8px",marginBottom:"6px"}} onClick={onOpen}>Sign Up</button>
-    ) : (
-      <Popover>
-  <PopoverTrigger>
-    <button  style={{marginLeft:"8px",marginBottom:"6px"}}>{userCredentials.firstName}</button>
-  </PopoverTrigger>
-  <Portal>
-    <PopoverContent>
-      <PopoverArrow />
-      <PopoverHeader>Options</PopoverHeader>
-      <PopoverCloseButton />
-      <PopoverBody>
-        <Button colorScheme='blue' onClick={logout}>Logout</Button>
-      </PopoverBody>
-      
-    </PopoverContent>
-  </Portal>
-</Popover>
-      
-    )}
-    <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Sign Up</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <form onSubmit={handleSubmit}>
-              <FormControl isInvalid={error !== ""}>
-                <FormLabel>First Name</FormLabel>
-                <Input name="firstName" onChange={handleChange} />
-                <FormLabel>Last Name</FormLabel>
-                <Input name="lastName" onChange={handleChange} />
-                <FormLabel>Mobile Number</FormLabel>
-                <Input name="mobileNumber" onChange={handleChange} />
-                <FormLabel>Email</FormLabel>
-                <Input name="email" onChange={handleChange} type="email" />
-                <FormLabel>Password</FormLabel>
-                <Input name="password" onChange={handleChange} type="password" />
-                <FormHelperText id="email-helper-text" mt={2}>
-                  {error}
-                </FormHelperText>
-              </FormControl>
-            </form>
-          </ModalBody>
-          <ModalFooter>
-          <Button >
-      <Login/>Login
-    </Button>
-            <Button onClick={handleSubmit}>Sign Up</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </>
+    <div>
+      <div className="loginNavbar">
+        <div className="arrow">
+          <FaArrowLeft className="arrowIcon" />
+        </div>
+        <div className="logo">
+          <img width="100px" src={ainak} alt="logo" />
+        </div>
+        <div></div>
+      </div>
+      <div className="loginContent">
+        <VStack justify="center" pt="2em" width={{base:'90%',md:'40%'}} m="auto">
+          <Text as="b" fontSize="4xl" mb="0.7em">
+            Create an account
+          </Text>
+          <Flex
+            gap="1em"
+            flexDirection="column"
+            width="100%"
+            alignItems="center"
+          >
+            <Input
+              value={email}
+              onChange={(e) => setemail(e.target.value)}
+              placeholder="Email address"
+              size="lg"
+              width="100%" type='email'
+            />
+            <Input
+              value={first}
+              onChange={(e) => setfirst(e.target.value)}
+              placeholder="First name"
+              size="lg"
+              width="100%"
+            />
+            <Input placeholder="Last name" size="lg" width="100%" />
+            <InputGroup size="lg" width="100%">
+              <Input
+                value={password}
+                onChange={(e) => passwordChangeFn(e)}
+                pr="4.5rem"
+                type={show ? "text" : "password"}
+                placeholder="Password"
+              />
+              <InputRightElement width="4.5rem">
+                <Button bg="white" h="1.75rem" size="sm" onClick={handleClick}>
+                  {show ? <BiShowAlt /> : <BiHide />}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+          </Flex>
+          <Flex
+            hidden={password == "" ? true : false}
+            flexDirection="column"
+            width="100%"
+          >
+            <Flex flexDirection="column" width="100%" my="1em">
+              <Flex width="100%" justify="space-between">
+                <Text fontSize="xs">Password strength</Text>
+                <Text fontSize="xs" as="b">
+                  {strengthCount}
+                </Text>
+              </Flex>
+              <Progress
+                width="100%"
+                value={strengthCount}
+                size="sm"
+                colorScheme={(strengthCount >= 0 && strengthCount < 30)? "red":(strengthCount >= 30 && strengthCount <= 70)? "yellow": (strengthCount > 70 && strengthCount <= 100)? "green": null
+                }
+              />
+            </Flex>
+            <List>
+              <ListItem fontSize="xs" textAlign="left">
+                <ListIcon
+                  as={password.length >= 8 ? HiCheckCircle : GoPrimitiveDot}
+                  color={password.length >= 8 ? "green" : "black"}
+                />
+                Includes 8-64 characters
+              </ListItem>
+              <ListItem fontSize="xs" textAlign="left">
+                <ListIcon
+                  as={alphaNum == 1 ? HiCheckCircle : GoPrimitiveDot}
+                  color={alphaNum == 1 ? "green" : "black"}
+                />
+                Combines letters and numbers
+              </ListItem>
+              <ListItem fontSize="xs" textAlign="left">
+                <ListIcon
+                  as={symbolNum == 1 ? HiCheckCircle : GoPrimitiveDot}
+                  color={symbolNum == 1 ? "green" : "black"}
+                />
+                A special character ~ # @ $ % & ! * _ ? ^ -
+              </ListItem>
+            </List>
+          </Flex>
+          <Flex alignItems="left" width="100%">
+            <Checkbox
+              isChecked={checked}
+              onChange={() => setchecked(!checked)}
+              mt="0.8em"
+              color="#585858"
+            >
+              Keep me signed in
+            </Checkbox>
+          </Flex>
+          <Text color="#585858" textAlign="left" fontSize="xs">
+            Selecting this checkbox will keep you signed into your account on
+            this device until you sign out. Do not select this on shared
+            devices.
+          </Text>
+          <Box py="0.8em" color="#585858">
+            <Text textAlign="left" fontSize="xs">
+              By creating an account, I agree to the Travelocity{" "}
+              <Link color="#0f5bb8" href="#">
+                Terms and Conditions
+              </Link>{" "}
+              and{" "}
+              <Link color="#0f5bb8" href="#">
+                Privacy Statement
+              </Link>
+              .
+            </Text>
+          </Box>
+          <button
+            className={`continue ${
+              first && email && password ? "darkBlue" : null
+            }`}
+            disabled={email == "" && password == "" ? true : false}
+            onClick={handleSubmit}
+          >
+            Continue
+          </button>
+          <Box py="0.8em" color="#585858">
+            <Text textAlign="left" fontSize="xs">
+              Already have an account?{" "}
+              <Link color="#0f5bb8" to='/login' as={ReachLink}>
+                Sign in
+              </Link>
+            </Text>
+          </Box>
+        </VStack>
+      </div>
+    </div>
   );
 };
 
 export default Signup;
-

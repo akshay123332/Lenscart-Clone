@@ -1,15 +1,25 @@
 import { Box, Flex, Input } from '@chakra-ui/react'
 import {BsFillTelephoneFill} from "react-icons/bs"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Signup from "./Signup"
 import "./Navbar.css"
 import MainNavbar from './MainNavbar'
 import Login from './Login'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const Navbar = () => {
+  const [username, setUsername] = useState('');
   const navigate = useNavigate();
-
+  useEffect(() => {
+    const storedUsername = JSON.parse(localStorage.getItem('userDetails'));
+    if (storedUsername) {
+      setUsername(storedUsername);
+    }
+  }, []);
+  const handleClick = ()=>{
+    navigate("/signup")
+  }
   return (
     <div>
     <div className='nav1'>
@@ -51,8 +61,12 @@ Lenskart Franchise</p>
     </div>
     <Flex cursor={'pointer'}>
         <p className='text1'>Track Order</p>
-        <Signup /> 
+        {username?
+        <p className='text1' >{username.email}</p>:
+        <p className='text1'onClick={handleClick}>Signup</p>
+      }
         {/* <Login/> */}
+
         <p className='text1'>Wishlist</p>
         <p onClick={()=>navigate("/cartA")} className='text1'>Cart</p>
     </Flex>
