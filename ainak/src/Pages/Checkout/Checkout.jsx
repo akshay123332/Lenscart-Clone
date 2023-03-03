@@ -11,12 +11,6 @@ const Checkout = () => {
            <PurchageItem/>
         </Flex>
         </Box>
-
-
-
-
-
-
     );
 };
 
