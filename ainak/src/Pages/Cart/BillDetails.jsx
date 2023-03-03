@@ -21,7 +21,7 @@ const Billdetails = ({data}) => {
 
     return (
         <Box>
-            <Text fontSize='2xl' mb={"8%"}>Bill Details</Text>
+            <Text fontSize='2xl' mb={"8%"} textAlign='start'>Bill Details</Text>
             <Box width={"100%"} m={"auto"} boxSize="border-box" boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"} padding="20px" borderRadius={"12px"}>
                 <Flex style={dddd} borderTop="0px solid">
                     <Text >Total Price</Text>
