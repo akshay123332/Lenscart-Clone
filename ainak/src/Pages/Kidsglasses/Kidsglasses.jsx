@@ -10,6 +10,8 @@ import { getData } from '../../redux/menspage/action'
 import Navbar from '../../Components/Home/Navbar'
 import Footer from '../../Components/Home/Footer'
 import Loader from '../../Components/Loader'
+import Navabr from '../../changed navbar/Navbar/Navabr'
+import LargeWithLogoLeft from '../../changed navbar/Footer/Footer'
 
 const Kidsglasses = () => {
 
@@ -38,9 +40,9 @@ useEffect(()=>{
 
   return (
     <div>
-      <Navbar/>
-         <div style={{display:"flex"}}>
-         <div style={{width:"20%", border:"0.5rem double cadetblue", height:"500px",marginTop:"30px",padding:"15px", borderRadius:"9px" , position:"sticky" , top:"30px"}}><Sidebar/></div>
+      <Navabr/>
+         <div className={styles.main}>
+         <div className={styles.sidebar}><Sidebar/></div>
           <div columns={[1,2,3,3,3]} spacing={25} padding="2%" className={`${styles.product}`}>
           
           {data?.map((el,index)=>{
@@ -51,7 +53,7 @@ useEffect(()=>{
           </div>
             
         </div>
-        <Footer/>
+        <LargeWithLogoLeft/>
     </div>
   )
 }
