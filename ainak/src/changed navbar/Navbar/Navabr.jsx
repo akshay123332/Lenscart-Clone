@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import NavbarRes from './NavbarRes';
 import Styles from "./Navbar.module.css"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 
 
 
 const Navabr = () => {
+  const [username, setUsername] = useState('');
+  const navigate = useNavigate()
+  useEffect(() => {
+    const storedUsername = JSON.parse(localStorage.getItem('userDetails'));
+    if (storedUsername) {
+      setUsername(storedUsername);
+    }
+  }, []);
+
+  const handleClick = ()=>{
+    navigate("/signup")
+  }
 //   const val=React.useContext(AuthContext)
 //   const logout=(()=>{
 //       val.handleAuth();
@@ -23,7 +35,10 @@ return (
        <Link to="/travelglasses"><button className={Styles.buttons}>TRAVELGLASSES</button></Link>   
          <Link to="/computerglasses"><button className={Styles.buttons}>COMPUTERGLASSES</button></Link> 
         <Link to="/kidsglasses"><button className={Styles.buttons}>KIDSGLASSES</button></Link>  
-      <Link to="/signup"><button className={Styles.buttons}>SIGNUP</button></Link>    
+      {username?
+        <button  className={Styles.buttons}>{username.email}</button>:
+        <button onClick={handleClick} className={Styles.buttons}>SIGNUP</button>
+      }
           <div className={Styles.navres}>< NavbarRes/></div>
       </div>
 
@@ -32,3 +47,9 @@ return (
 }
 
 export default Navabr
+
+
+//   {username?
+// <p className='text1' >{username.email}</p>:
+// <p className='text1'onClick={handleClick}>Signup</p>
+// }
