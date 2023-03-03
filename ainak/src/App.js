@@ -15,6 +15,8 @@ import Loader from './Components/Loader';
 import Multistep from './Pages/ComputerGlasses/Checkout/Checkout';
 import Eyeglasses from './Pages/Eyeglasses/Eyeglasses';
 import Cartnew from './Pages/Cart/Cartnew';
+import Signup from './Components/Home/Signup';
+import Login from './Components/Home/Login';
 
 
 
@@ -27,7 +29,8 @@ function App() {
      
        {/* <Menspage/> */}
 
-   
+      {/* <Signup/> */}
+      {/* <Login/> */}
        <AllRoutes/>
 
 {/*     
