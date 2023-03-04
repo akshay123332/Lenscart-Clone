@@ -24,8 +24,8 @@ import {
   import { useState } from "react";
   import image from "./payment.png";
   import img from "./option.png";
-  import nav from "./Nav.png"
-  import Result from "./Result";
+  import nav from "../Checkout/Nav.png"
+  import Result from "./payment.png";
   export const Payment = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [cardNumber, setCardNUmber] = React.useState("");
