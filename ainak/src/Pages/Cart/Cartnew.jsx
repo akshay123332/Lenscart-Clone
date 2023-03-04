@@ -4,11 +4,12 @@ import LargeWithLogoLeft from '../../changed navbar/Footer/Footer'
 import Navabr from '../../changed navbar/Navbar/Navabr'
 import Styles from "./cart.module.css"
 import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 const Cartnew = () => {
     const[cartitem,setCartitem]=useState([])
     const [total,setTotal]=useState(0)
-
+    const navigate = useNavigate()
     const getData=()=>{
         axios.get("https://zara-mock-cw.onrender.com/cart").then(res=>setCartitem(res.data))
         .catch(err=>console.log(err))
@@ -29,6 +30,9 @@ const handleDelte=(id)=>{
     .catch(err=>console.log(err))
 }
 
+    const handleClick = ()=>{
+        navigate("/checkout")
+    }
     useEffect(()=>{
         getData()
     },[cartitem])
@@ -42,7 +46,7 @@ const handleDelte=(id)=>{
        <div className={Styles.parent}> 
 
        <div className={Styles.sidebar} >
-        <Button isDisabled={total===0} >PROCEED TO CHECKOUT </Button>
+        <Button isDisabled={total===0} onClick={handleClick}>PROCEED TO CHECKOUT </Button>
            {/* {total>0? <button className={Styles.btn} >PROCEED TO CHECKOUT</button> : <button className={Styles.btn} disabled >PROCEED TO CHECKOUT</button>} */}
             <h1  className={Styles.text}>Bill details:- </h1>
             <h1 className={Styles.text}>Number of Items: {cartitem.length}</h1>    

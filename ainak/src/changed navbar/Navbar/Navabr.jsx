@@ -38,7 +38,8 @@ return (
       {username?
         <button  className={Styles.buttons}>{username.email}</button>:
         <button onClick={handleClick} className={Styles.buttons}>SIGNUP</button>
-      }
+      } 
+        <Link to="/cartA"><button className={Styles.buttons}>Cart</button></Link>  
           <div className={Styles.navres}>< NavbarRes/></div>
       </div>
 
