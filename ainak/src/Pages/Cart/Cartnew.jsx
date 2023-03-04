@@ -39,7 +39,9 @@ const handleDelte=(id)=>{
     <div>
         <Navabr/>
        <div className={Styles.parent}> 
+
        <div className={Styles.sidebar} >
+           {total>0? <button className={Styles.btn} disabled >PROCEED TO CHECKOUT</button> : <button className={Styles.btn} >PROCEED TO CHECKOUT</button>}
             <h1  className={Styles.text}>Bill details:- </h1>
             <h1 className={Styles.text}>Number of Items: {cartitem.length}</h1>    
              <h1 className={Styles.text}>Total Price : {total}</h1>
