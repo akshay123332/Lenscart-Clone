@@ -13,9 +13,11 @@ const Cartnew = () => {
     const getData=()=>{
         axios.get("https://zara-mock-cw.onrender.com/cart").then(res=>setCartitem(res.data))
         .catch(err=>console.log(err))
-   let sum= cartitem.reduce((el,acc)=>{
-        return Number(el.price)+acc
-    },0)
+        let sum=0;
+  for(let i=0;i<cartitem.length;i++){
+    sum+=cartitem[i].price
+  }
+    console.log(sum)
     setTotal(sum)
     }
 
