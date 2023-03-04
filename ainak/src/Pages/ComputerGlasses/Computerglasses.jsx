@@ -35,7 +35,7 @@ useEffect(()=>{
     }
     dispatch(getData(comp_url,paramObj))
 },[location.search])
-
+console.log(data)
 
   return (
     <div>
