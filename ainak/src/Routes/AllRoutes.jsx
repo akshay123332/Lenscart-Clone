@@ -12,7 +12,7 @@ import CartA from '../Pages/Cart/CartA'
 import Checkout from '../Pages/Checkout/Checkout'
 import Signup from '../Components/Home/Signup'
 
-
+import PrivateRoute from './PrivateRoutes'
 import Login from '../Components/Home/Login'
 
 
@@ -29,7 +29,7 @@ const AllRoutes = () => {
         <Route path='/cartA' element={<CartA/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/login' element={<Login/>}/>
-        <Route path='/checkout' element={<Checkout/>}/>
+        <Route path='/checkout' element={<PrivateRoute><Checkout/></PrivateRoute>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path="*" element={<Homepage/>} />
       </Routes>
