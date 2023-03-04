@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ProductCard } from "./Productcard";
 import { useToast } from '@chakra-ui/react'
 import { Navigate } from "react-router-dom";
+import Navabr from "../../changed navbar/Navbar/Navabr";
 const total=JSON.parse(localStorage.getItem("total"))||0
 const length=JSON.parse(localStorage.getItem("length"))||0
 
@@ -42,6 +43,8 @@ const length=JSON.parse(localStorage.getItem("length"))||0
     }
 
     return (
+        <div>
+          <Navabr/>
         <Stack
             direction={["column", "row"]}
             w={["90%", "80%"]}
@@ -54,6 +57,7 @@ const length=JSON.parse(localStorage.getItem("length"))||0
             justify='space-around'
             align={'top'}
         >
+          
             <Stack className="form" w={['90%',"100%"]} justify='center' align={'center'} 
             p='4% 2%'
             border='1px solid gray'
@@ -199,7 +203,7 @@ const length=JSON.parse(localStorage.getItem("length"))||0
              </Box>
              </Link>
              <Stack
-             hidden={total==0}
+             hidden={total===0}
              direction={"row"} justify="space-between" align={"center"} py='10px'px='15px' fontWeight='900' mt='5%'bg="gray.200" >
               <Text>ORDER TOTAL</Text>
               <Text color='teal.600' >₹{total}</Text>
@@ -207,6 +211,7 @@ const length=JSON.parse(localStorage.getItem("length"))||0
              </Stack>
             </Box>
         </Stack>
+        </div>
     );
 };
 
