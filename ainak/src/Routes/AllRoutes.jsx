@@ -9,12 +9,13 @@ import Homepage from "../changed navbar/Homepage/Homepage"
 import Computerglasses from '../Pages/ComputerGlasses/Computerglasses'
 
 import CartA from '../Pages/Cart/CartA'
-import Checkout from '../Pages/Checkout/Checkout'
+import Checkout from '../Pages/Checkout/NewCheckout'
 import Signup from '../Components/Home/Signup'
 
 import {PrivateRoute} from './PrivateRoutes'
 import Login from '../Components/Home/Login'
 import Cartnew from '../Pages/Cart/Cartnew'
+import { Payment } from './../Pages/Checkout/Payment';
 
 
 const AllRoutes = () => {
@@ -31,6 +32,7 @@ const AllRoutes = () => {
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/checkout' element={<PrivateRoute><Checkout/></PrivateRoute>}/>
+        <Route path='/payment' element={<PrivateRoute><Payment/></PrivateRoute>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path="*" element={<Homepage/>} />
       </Routes>

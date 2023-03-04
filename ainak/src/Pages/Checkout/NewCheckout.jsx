@@ -2,13 +2,13 @@ import { Box, Button, Flex, Image, Input, Radio, RadioGroup, Select, Stack, Text
 import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ProductCard } from "./ProductCard";
+import { ProductCard } from "./Productcard";
 import { useToast } from '@chakra-ui/react'
 import { Navigate } from "react-router-dom";
 const total=JSON.parse(localStorage.getItem("total"))||0
 const length=JSON.parse(localStorage.getItem("length"))||0
 
-export const Checkout = () => {
+ const Checkout = () => {
     const [value, setValue] = React.useState('1')
     const [fname, setfname] = useState("")
     const [Lname, setLname] = useState("")
@@ -25,8 +25,9 @@ export const Checkout = () => {
 
     const handleSubmit=()=>{
         if(value!==""&&fname!==""&&Lname!==""&&email!==""&&address1!==""&&state!==""&&country!==""&&mobile!==""&&district!==""&&zip!==""){
-          <Link to='/checkout'></Link>
-          Navigate('/checkout')
+          
+        
+          Navigate('/payment')
         }
         else{
           toast({
@@ -208,3 +209,5 @@ export const Checkout = () => {
         </Stack>
     );
 };
+
+export default Checkout
