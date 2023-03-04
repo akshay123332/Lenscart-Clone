@@ -12,7 +12,7 @@ import CartA from '../Pages/Cart/CartA'
 import Checkout from '../Pages/Checkout/Checkout'
 import Signup from '../Components/Home/Signup'
 
-import PrivateRoute from './PrivateRoutes'
+import {PrivateRoute} from './PrivateRoutes'
 import Login from '../Components/Home/Login'
 
 
