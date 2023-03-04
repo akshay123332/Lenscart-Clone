@@ -1,17 +1,19 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { Navigate, useLocation } from 'react-router-dom'
+import { useContext } from 'react'
+import { Navigate} from 'react-router-dom'
+import { useSelector } from 'react-redux';
+import { getDataLocal } from '../LocalStorage/usernamePassword';
 
-const PrivateRoute = ({ children }) => {
-    const isAuth = useSelector((store) => store.authReducer.isAuth)
-    
-    console.log(isAuth)
-    const location = useLocation();
-
-    if (!isAuth) {
-        return <Navigate to={'/login'} state={location.pathname} replace />;   
+export function PrivateRoute({children}) {
+    localStorage.setItem('previousPage', window.location.pathname);
+    console.log(window.location.pathname);
+    let key = 'userDetails'
+    let localData = getDataLocal(key)
+    if(localData){
+        return children
     }
-    return children
-}
+    else{
 
-export default PrivateRoute
+        return <Navigate to='/login' />
+    }
+}
