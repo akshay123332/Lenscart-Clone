@@ -14,6 +14,7 @@ import Signup from '../Components/Home/Signup'
 
 
 import Login from '../Components/Home/Login'
+import Cartnew from '../Pages/Cart/Cartnew'
 
 
 const AllRoutes = () => {
@@ -26,7 +27,7 @@ const AllRoutes = () => {
         <Route path='/kidsglasses' element={<Kidsglasses/>} />
         <Route path='/sunglasses' element={<Sunglasses/>} />
         <Route path='/travelglasses' element={<Travelglassess/>} />
-        <Route path='/cartA' element={<CartA/>}/>
+        <Route path='/cartA' element={<Cartnew/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/checkout' element={<Checkout/>}/>
