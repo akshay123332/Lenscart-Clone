@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import LargeWithLogoLeft from '../../changed navbar/Footer/Footer'
 import Navabr from '../../changed navbar/Navbar/Navabr'
 import Styles from "./cart.module.css"
+import { Button, ButtonGroup } from '@chakra-ui/react'
 
 const Cartnew = () => {
     const[cartitem,setCartitem]=useState([])
@@ -39,7 +40,10 @@ const handleDelte=(id)=>{
     <div>
         <Navabr/>
        <div className={Styles.parent}> 
+
        <div className={Styles.sidebar} >
+        <Button isDisabled={total===0} >PROCEED TO CHECKOUT </Button>
+           {/* {total>0? <button className={Styles.btn} >PROCEED TO CHECKOUT</button> : <button className={Styles.btn} disabled >PROCEED TO CHECKOUT</button>} */}
             <h1  className={Styles.text}>Bill details:- </h1>
             <h1 className={Styles.text}>Number of Items: {cartitem.length}</h1>    
              <h1 className={Styles.text}>Total Price : {total}</h1>
