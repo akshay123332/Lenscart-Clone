@@ -17,7 +17,7 @@ const Sunglasses = () => {
 let sunglass_url="https://rich-gray-scarab-fez.cyclic.app/eyeglasses"
 
 const dispatch=useDispatch()
-const data=useSelector((store)=>store.data);
+const data=useSelector((store)=>store.menspagereducer.data);
 const loader=useSelector((store)=>store.isLoading)
 const location=useLocation();
 const [searchparams]=useSearchParams()
