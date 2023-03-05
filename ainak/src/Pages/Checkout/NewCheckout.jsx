@@ -90,10 +90,10 @@ import axios from "axios";
     const getdata=()=>{
       axios.get(`https://zara-mock-cw.onrender.com/cart`).then((res)=>{
           setdata(res.data)
-          console.log(data)
+          
       })
       .catch((err)=>{
-          console.log(err)
+        
       })
   }
     
