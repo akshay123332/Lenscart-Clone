@@ -40,7 +40,7 @@ const handleDelte=(id)=>{
     },[cartitem])
 //https://rich-gray-scarab-fez.cyclic.app/cart
 
-// console.log(cartitem)
+
 
   return (
     <div>
