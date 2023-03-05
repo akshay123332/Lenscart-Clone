@@ -261,13 +261,6 @@ import {
                 isDisabled={checked ? false : true}
                 onClick={() => {
                   handleSubmit();
-                  console.log({
-                    cardNumber,
-                    cvv,
-                    name,
-                    date,
-                    checked,
-                  });
                 }}
               >
                 PLACE ORDER
