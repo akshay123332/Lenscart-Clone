@@ -246,9 +246,6 @@ for(let el of data){
                     <Button colorScheme='teal' size='lg' p='2px 0'
                       onClick={()=>{
                         handleSubmit()
-                        console.log({
-                        address1,address2,mobile,zip,country,state,value,district
-                        })
                       }}
                     >
                         Continue
