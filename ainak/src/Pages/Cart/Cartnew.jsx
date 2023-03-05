@@ -17,7 +17,7 @@ const Cartnew = () => {
   for(let i=0;i<cartitem.length;i++){
     sum+=cartitem[i].price
   }
-    console.log(sum)
+    
     setTotal(sum)
     }
 
