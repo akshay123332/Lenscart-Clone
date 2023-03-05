@@ -5,7 +5,7 @@ import {
     Flex,
     Image,
     Input,
-    Link,
+   
     ListItem,
     Modal,
     ModalBody,
@@ -26,6 +26,7 @@ import {
   import img from "./option.png";
   import nav from "../Checkout/Nav.png"
   import Result from "./Result";
+  import { Link } from "react-router-dom";
   export const Payment = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [cardNumber, setCardNUmber] = React.useState("");

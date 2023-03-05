@@ -1,16 +1,20 @@
 import { Box, Button, Flex, Image, Input, Radio, RadioGroup, Select, Stack, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ProductCard } from "./Productcard";
 import { useToast } from '@chakra-ui/react'
 import { Navigate } from "react-router-dom";
 import Navabr from "../../changed navbar/Navbar/Navabr";
-const total=JSON.parse(localStorage.getItem("total"))||0
-const length=JSON.parse(localStorage.getItem("length"))||0
+import axios from "axios";
+
+
+// const t=JSON.parse(localStorage.getItem("total"))||0
+// const l=JSON.parse(localStorage.getItem("length"))||0
+
 
  const Checkout = () => {
-    const [value, setValue] = React.useState('1')
+    const [value, setValue] = React.useState('')
     const [fname, setfname] = useState("")
     const [Lname, setLname] = useState("")
     const [email, setEmail] = useState("")
@@ -23,12 +27,54 @@ const length=JSON.parse(localStorage.getItem("length"))||0
     const [zip, setZip] = useState('')
     const toast=useToast()
     const Navigate=useNavigate()
+    let total=0
+    let length=0
+    const [data,setdata]=useState([])
 
     const handleSubmit=()=>{
         if(value!==""&&fname!==""&&Lname!==""&&email!==""&&address1!==""&&state!==""&&country!==""&&mobile!==""&&district!==""&&zip!==""){
-          
-        
-          Navigate('/payment')
+          let m=mobile.split("").map(Number)   
+           let z=zip.split("").map(Number)
+           let i=email.indexOf("@")
+           let em=email.slice(i,email.length)
+    
+          if(mobile.length==10 && zip.length==6){
+           if(m.includes(NaN)){
+            
+            toast({
+              position: 'top',
+              title: 'Status',
+              description: "Mobile number should be number and 10 digit.",
+              status: 'error',
+              duration: 9000,
+              isClosable: true,
+            })
+           }
+           else if(i==-1 || em!=="@gmail.com"){
+            toast({
+              position: 'top',
+              title: 'Status',
+              description: "Email is not correct.",
+              status: 'error',
+              duration: 9000,
+              isClosable: true,
+            })
+            
+           }
+          else if(z.includes(NaN)){
+            toast({
+              position: 'top',
+              title: 'Status',
+              description: "Zip/Postal Code should be number and 6 digit.",
+              status: 'error',
+              duration: 9000,
+              isClosable: true,
+            })
+           }
+           else{
+            Navigate('/payment')
+           }
+          }
         }
         else{
           toast({
@@ -41,6 +87,25 @@ const length=JSON.parse(localStorage.getItem("length"))||0
           })
         }
     }
+    const getdata=()=>{
+      axios.get(`https://zara-mock-cw.onrender.com/cart`).then((res)=>{
+          setdata(res.data)
+          console.log(data)
+      })
+      .catch((err)=>{
+          console.log(err)
+      })
+  }
+    
+useEffect(()=>{
+  getdata()
+},[])
+
+for(let el of data){
+  total+=el.price;
+  length++
+
+}
 
     return (
         <div>
@@ -92,12 +157,12 @@ const length=JSON.parse(localStorage.getItem("length"))||0
                     </RadioGroup>
                 </Stack>
                 <Stack direction={["column", "row"]} w="100%" mb="5%" spacing={4}>
-                    <Input type={"number"} placeholder="Mobile *" 
+                    <Input type={"tel"} placeholder="Mobile *" maxLength={10}
                        onChange={(e)=>{
                         setMobile(e.target.value)
                       }}
                     />
-                    <Input type={"email"} placeholder="Email *" 
+                    <Input type={'email'} required placeholder="Email *" 
                         onChange={(e)=>{
                             setEmail(e.target.value)
                           }}
@@ -116,7 +181,7 @@ const length=JSON.parse(localStorage.getItem("length"))||0
                     />
                 </Stack>
                 <Stack direction={["column", "row"]} w="100%" mb="5%" spacing={4}>
-                    <Input type={"number"} placeholder="Zip/Postal Code *" 
+                    <Input type={"pin"} placeholder="Zip/Postal Code *" maxLength={6} 
                        onChange={(e)=>{
                         setZip(e.target.value)
                       }}
@@ -134,11 +199,11 @@ const length=JSON.parse(localStorage.getItem("length"))||0
                       }}
                     >
                         <option value="india">India</option>
-                        <option value="usa">USA</option>
+                        {/* <option value="usa">USA</option>
                         <option value="japan">Japan</option>
                         <option value="france">France</option>
                         <option value="china">China</option>
-                        <option value="dubai">Dubai</option>
+                        <option value="dubai">Dubai</option> */}
                     </Select>
                     <Select placeholder="State *"
                        onChange={(e)=>{
