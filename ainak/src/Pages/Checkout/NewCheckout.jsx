@@ -247,7 +247,7 @@ for(let el of data){
                       onClick={()=>{
                         handleSubmit()
                         console.log({
-                            fname,Lname,email,address1,address2,mobile,zip,country,state,value,district
+                            email,address1,address2,mobile,zip,country,state,value,district
                         })
                       }}
                     >
