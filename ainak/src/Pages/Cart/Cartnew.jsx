@@ -10,9 +10,19 @@ const Cartnew = () => {
     const[cartitem,setCartitem]=useState([])
     const [total,setTotal]=useState(0)
     const navigate = useNavigate()
-    const getData=()=>{
-        axios.get("https://zara-mock-cw.onrender.com/cart").then(res=>setCartitem(res.data))
-        .catch(err=>console.log(err))
+    const getData=async ()=>{
+        // axios.get("https://handsome-red-cowboy-hat.cyclic.app/cart").then(res=>setCartitem(res.data.data))
+        // .catch(err=>console.log(err))
+
+        const res=await fetch("https://handsome-red-cowboy-hat.cyclic.app/cart",{
+          method:"GET",
+          headers:{
+            "Content-type":"application/json"
+          }
+        })
+        const data=await res.json()
+       setCartitem(data.data)
+
         let sum=0;
   for(let i=0;i<cartitem.length;i++){
     sum+=cartitem[i].price
@@ -21,15 +31,29 @@ const Cartnew = () => {
     setTotal(sum)
     }
 
-const handleDelte=(id)=>{
-    axios.delete(`https://zara-mock-cw.onrender.com/cart/${id}`).then(res=>console.log(res.data))
-    .catch(err=>console.log(err))
+const handleDelte=async (id)=>{
+    // axios.delete(`https://handsome-red-cowboy-hat.cyclic.app/cart/delete/${id}`).then(res=>console.log(res.data))
+    // .catch(err=>console.log(err))
 
+    const r=await fetch(`https://handsome-red-cowboy-hat.cyclic.app/cart/delete/${id}`,{
+      method:"DELETE",
+      headers:{
+        "Content-type":"application/json"
+      }
+    })
+    const d=await r.json()
+    console.log(d)
     alert("Successfully Deleted the Product")
 
 
-    axios.get("https://zara-mock-cw.onrender.com/cart").then(res=>setCartitem(res.data))
-    .catch(err=>console.log(err))
+    const res=await fetch("https://handsome-red-cowboy-hat.cyclic.app/cart",{
+      method:"GET",
+      headers:{
+        "Content-type":"application/json"
+      }
+    })
+    const data=await res.json()
+   setCartitem(data.data)
 }
 
     const handleClick = ()=>{
@@ -63,7 +87,7 @@ const handleDelte=(id)=>{
                      <h2 className={Styles.text}>{el.desc}---{el.compatible}---{el.frameshape}</h2>
                      <h2 className={Styles.text}>Rs. {el.price}</h2>
                      <h4 className={Styles.text}>Rating : {el.rating}</h4>   
-                    <button className={Styles.btn} onClick={()=>handleDelte(el.id)}>DELETE</button>
+                    <button className={Styles.btn} onClick={()=>handleDelte(el._id)}>DELETE</button>
                    </div>
                 )
             })}

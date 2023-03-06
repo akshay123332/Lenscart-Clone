@@ -8,8 +8,8 @@ export const ProductCard = () => {
     let total=0
     const [data,setdata]=useState([])
     const getdata=()=>{
-        axios.get(`https://rich-gray-scarab-fez.cyclic.app/cart`).then((res)=>{
-            setdata(res.data)
+        axios.get(`https://handsome-red-cowboy-hat.cyclic.app/cart`).then((res)=>{
+            setdata(res.data.data)
             console.log(data)
         })
         .catch((err)=>{

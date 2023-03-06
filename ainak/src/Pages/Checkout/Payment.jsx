@@ -35,6 +35,17 @@ import {
     const [checked, setCheck] = useState(false);
     const toast = useToast()
     const [success,setsuccess]=useState(false)
+
+    const clearcart=async ()=>{
+      const res=await fetch(`https://handsome-red-cowboy-hat.cyclic.app/cart/checkout`,{
+        method:"DELETE",
+        headers:{
+          "Content-type":"application/json"
+        }
+      })
+      const data=await res.json()
+      console.log(data.msg)
+    }
   
     const handleSubmit = () => {
       if (cardNumber !== "" && date !== "" && name !== "" && cvv !== "") {
@@ -260,6 +271,7 @@ import {
                 isDisabled={checked ? false : true}
                 onClick={() => {
                   handleSubmit();
+                  clearcart()
                   console.log({
                     cardNumber,
                     cvv,
