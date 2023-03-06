@@ -27,7 +27,7 @@ const Cartnew = () => {
   for(let i=0;i<cartitem.length;i++){
     sum+=cartitem[i].price
   }
-    console.log(sum)
+    
     setTotal(sum)
     }
 
@@ -64,7 +64,7 @@ const handleDelte=async (id)=>{
     },[cartitem])
 //https://rich-gray-scarab-fez.cyclic.app/cart
 
-// console.log(cartitem)
+
 
   return (
     <div>

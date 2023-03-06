@@ -8,9 +8,15 @@ export const ProductCard = () => {
     let total=0
     const [data,setdata]=useState([])
     const getdata=()=>{
+// <<<<<<< HEAD
+//         axios.get(`https://handsome-red-cowboy-hat.cyclic.app/cart`).then((res)=>{
+//             setdata(res.data.data)
+//             console.log(data)
+
         axios.get(`https://handsome-red-cowboy-hat.cyclic.app/cart`).then((res)=>{
             setdata(res.data.data)
-            console.log(data)
+            
+
         })
         .catch((err)=>{
             console.log(err)
@@ -31,6 +37,7 @@ export const ProductCard = () => {
         data?.map((el,i)=>{
             return (
                 <Stack id={i}
+                key={i}
                
                 direction='row' justify={'space-around'} align='center' fontSize={["12px",'16px']} px='5px'>
                     <Image w="20%"  src={el.image}></Image>
