@@ -9,7 +9,7 @@ export const ProductCard = () => {
     let total=0
     const [data,setdata]=useState([])
     const getdata=()=>{
-// <<<<<<< HEAD
+
 //         axios.get(`https://handsome-red-cowboy-hat.cyclic.app/cart`).then((res)=>{
 //             setdata(res.data.data)
 //             console.log(data)
