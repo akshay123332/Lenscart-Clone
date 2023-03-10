@@ -17,6 +17,7 @@ export const ProductCard = () => {
         axios.get(`https://handsome-red-cowboy-hat.cyclic.app/cart`).then((res)=>{
             setdata(res.data.data)
             
+            
 
         })
         .catch((err)=>{
