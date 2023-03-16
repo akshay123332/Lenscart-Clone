@@ -5,7 +5,7 @@ import {
     Flex,
     Image,
     Input,
-    Link,
+   
     ListItem,
     Modal,
     ModalBody,
@@ -26,6 +26,7 @@ import {
   import img from "./option.png";
   import nav from "../Checkout/Nav.png"
   import Result from "./Result";
+  import { Link } from "react-router-dom";
   export const Payment = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [cardNumber, setCardNUmber] = React.useState("");
@@ -35,10 +36,43 @@ import {
     const [checked, setCheck] = useState(false);
     const toast = useToast()
     const [success,setsuccess]=useState(false)
+
+    const clearcart=async ()=>{
+      const res=await fetch(`https://handsome-red-cowboy-hat.cyclic.app/cart/checkout`,{
+        method:"DELETE",
+        headers:{
+          "Content-type":"application/json"
+        }
+      })
+      const data=await res.json()
+      console.log(data.msg)
+    }
   
     const handleSubmit = () => {
       if (cardNumber !== "" && date !== "" && name !== "" && cvv !== "") {
-        if(cardNumber.length===16 && cvv.length==3){
+        let card=cardNumber.split("").map(Number)
+        let Cv=cvv.split("").map(Number)
+        if(card.includes(NaN)){
+          toast({
+            position: 'top',
+            title: 'Status',
+            description: "Card number should be Number.",
+            status: 'error',
+            duration: 9000,
+            isClosable: true,
+          })
+        }
+        else if(Cv.includes(NaN)){
+          toast({
+            position: 'top',
+            title: 'Status',
+            description: "CVV number should be Number.",
+            status: 'error',
+            duration: 9000,
+            isClosable: true,
+          })
+        }
+       else  if(cardNumber.length===16 && cvv.length==3){
           toast({
             position: 'top',
             title: 'Status',
@@ -54,7 +88,7 @@ import {
           
             position: 'top',
             title: 'Error',
-            description: "Card Number Should be 16 digits .",
+            description: "Card Number should be 16 digits .",
             status: 'error',
             duration: 9000,
             isClosable: true,
@@ -65,7 +99,7 @@ import {
            
             position: 'top',
             title: 'Error',
-            description: "CVV Number Should be 3 digits .",
+            description: "CVV Number should be 3 digits .",
             status: 'error',
             duration: 9000,
             isClosable: true,
@@ -260,6 +294,8 @@ import {
                 isDisabled={checked ? false : true}
                 onClick={() => {
                   handleSubmit();
+
+                  clearcart()
                   console.log({
                     cardNumber,
                     cvv,

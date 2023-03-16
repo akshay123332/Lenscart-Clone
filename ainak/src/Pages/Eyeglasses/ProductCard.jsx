@@ -12,7 +12,7 @@ const ProductCard = ({id,image,desc,price,rating,frameshape,compatible}) => {
     let cartobj={
       id,image,desc,price,rating,frameshape,compatible
     }
-    axios.post("https://zara-mock-cw.onrender.com/cart",cartobj).then((res)=>console.log(res)).catch((Err)=>console.log(Err))
+    axios.post("https://handsome-red-cowboy-hat.cyclic.app/cart/add",cartobj).then((res)=>console.log(res)).catch((Err)=>console.log(Err))
    
       }
 
