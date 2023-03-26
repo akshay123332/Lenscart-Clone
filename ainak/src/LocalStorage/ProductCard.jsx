@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { Image, Stack } from '@chakra-ui/react';
 import axios from 'axios';
+
 import { useEffect } from 'react';
 import { Text } from '@chakra-ui/react';
 
