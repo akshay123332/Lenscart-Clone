@@ -25,6 +25,7 @@ export const ProductCard = () => {
     },[])
  for(let el of data){
     total+=el.price
+     
  }
  localStorage.setItem("total",JSON.stringify(total))
  localStorage.setItem("length",JSON.stringify(data.length))
