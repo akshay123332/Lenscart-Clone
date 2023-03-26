@@ -17,6 +17,7 @@ export const ProductCard = () => {
             console.log(err)
         })
     }
+    
     useEffect(()=>{
         getdata()
     },[])
